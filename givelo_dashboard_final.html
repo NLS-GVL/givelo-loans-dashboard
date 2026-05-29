@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Givelo - Portafolio de Deuda</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F7F8FA;--white:#FFF;--sf:#F0F2F5;--sf2:#E8EAED;--bd:#E2E5EA;--bd2:#D0D4DB;
+  --t:#0F1117;--t2:#3D4350;--t3:#6B7280;--t4:#9CA3AF;
+  --ac:#1A56DB;--ac-bg:#EBF0FD;--ac-bd:#C3D0F8;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-bd:#FCA5A5;
+  --amb:#D97706;--amb-bg:#FFFBEB;--amb-bd:#FCD34D;
+  --grn:#059669;--grn-bg:#ECFDF5;--grn-bd:#6EE7B7;
+  --font:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:10px;--r2:6px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 12px rgba(0,0,0,.08);
+}
+body{background:var(--bg);color:var(--t);font-family:var(--font);min-height:100vh;font-size:14px;}
+.wrap{max-width:1520px;margin:0 auto;padding:24px 32px 60px;}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:14px 22px;background:var(--white);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);}
+.la{display:flex;align-items:center;gap:14px;}
+.la img{height:26px;}
+.ldi{width:1px;height:22px;background:var(--bd2);}
+.ls{font-size:11px;color:var(--t3);line-height:1.4;}
+.ls strong{color:var(--t2);font-weight:600;}
+.hr{display:flex;align-items:center;gap:12px;}
+.dc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r2);padding:5px 12px;font-size:11px;color:var(--t2);font-family:var(--mono);}
+.lc{display:inline-flex;align-items:center;gap:5px;background:var(--grn-bg);border:1px solid var(--grn-bd);border-radius:var(--r2);padding:5px 10px;font-size:11px;font-weight:500;color:var(--grn);}
+.lc::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);animation:pu 2s infinite;}
+@keyframes pu{0%,100%{opacity:1;}50%{opacity:.3;}}
+.sem{display:flex;align-items:center;gap:8px;background:var(--white);border:2px solid var(--grn-bd);border-radius:var(--r);padding:8px 14px;box-shadow:var(--sh);}
+.sem-dot{width:12px;height:12px;border-radius:50%;background:var(--grn);animation:glow 2s infinite;}
+@keyframes glow{0%,100%{box-shadow:0 0 6px rgba(5,150,105,.4);}50%{box-shadow:0 0 14px rgba(5,150,105,.8);}}
+.sem-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grn);}
+.sem-s{font-size:10px;color:var(--t3);}
+.kr{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.kpi{background:var(--white);border:1px solid var(--bd);border-radius:var(--r);padding:15px 17px;box-shadow:var(--sh);}
+.kpi.ac{background:var(--ac);border-color:var(--ac);}
+.kpi.ac .kl{color:rgba(255,255,255,.7);}.kpi.ac .kv{color:#fff;}.kpi.ac .ks{color:rgba(255,255,255,.6);}
+.kl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:5px;}
+.kv{font-size:24px;font-weight:700;letter-spacing:-.5px;color:var(--t);}
+.kv.w{color:var(--amb);}.kv.d{color:var(--red);}
+.ks{font-size:10px;color:var(--t3);margin-top:4px;}
+.kt{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;margin-top:5px;}
+.ta{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-bd);}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+.pc{background:var(--white);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);}
+.pnx{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t4);margin-bottom:5px;}
+.pnm{font-size:13px;font-weight:700;color:var(--t);margin-bottom:2px;}
+.pdt{font-size:10px;color:var(--t3);margin-bottom:8px;}
+.pmt{font-size:24px;font-weight:800;letter-spacing:-.5px;}
+.tabs{display:flex;gap:1px;margin-bottom:16px;background:var(--bd);border-radius:var(--r);padding:3px;width:fit-content;}
+.tb{font-family:var(--font);font-size:12px;font-weight:500;padding:7px 18px;border-radius:7px;border:none;cursor:pointer;background:transparent;color:var(--t3);transition:all .2s;}
+.tb.on{background:var(--white);color:var(--t);box-shadow:var(--sh);}
+.tp{display:none;}.tp.on{display:block;}
+.mg{display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;}
+.card{background:var(--white);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;}
+.ch{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--bd);}
+.ct{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);}
+.ci{font-size:10px;color:var(--t4);}
+table{width:100%;border-collapse:collapse;}
+th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t4);padding:8px 13px;text-align:left;border-bottom:1px solid var(--bd);background:var(--sf);white-space:nowrap;}
+th.r,td.r{text-align:right;}
+td{padding:0 13px;height:48px;font-size:12px;border-bottom:1px solid var(--bd);vertical-align:middle;color:var(--t);font-family:var(--mono);}
+tr.dr{cursor:pointer;transition:background .12s;}
+tr.dr:hover td{background:var(--sf);}
+tr.dr.sel td{background:var(--ac-bg)!important;}
+tr.dr.sel td:first-child{border-left:3px solid var(--ac);padding-left:10px;}
+tr.gh td{background:var(--sf);padding:5px 13px;border-bottom:1px solid var(--bd);}
+.gl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t4);}
+tr:last-child td{border-bottom:none;}
+.ttr td{background:var(--sf)!important;font-weight:600;border-top:2px solid var(--bd2);}
+.an{font-family:var(--font);font-size:13px;font-weight:600;color:var(--t);}
+.as{font-size:10px;color:var(--t3);margin-top:1px;font-family:var(--font);}
+.ba{display:inline-block;font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:4px;font-weight:600;}
+.pj{background:var(--ac-bg);color:var(--ac);}.pn{background:var(--amb-bg);color:var(--amb);}.ro{background:var(--grn-bg);color:var(--grn);margin-left:3px;}
+.rcc{display:flex;align-items:center;gap:6px;justify-content:flex-end;}
+.rb{width:40px;height:4px;background:var(--sf2);border-radius:2px;overflow:hidden;}
+.rf{height:100%;border-radius:2px;}
+.vt{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;font-family:var(--font);}
+.vu{background:var(--red-bg);color:var(--red);}.vs{background:var(--amb-bg);color:var(--amb);}.vo{color:var(--t3);}
+.rk{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;font-size:10px;font-weight:700;}
+.r1{background:var(--red-bg);color:var(--red);}.rn{background:var(--sf);color:var(--t4);}
+.dp{display:flex;flex-direction:column;gap:13px;}
+.de{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px;text-align:center;gap:8px;}
+.dei{width:36px;height:36px;border-radius:8px;background:var(--sf);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.det{font-size:11px;color:var(--t3);line-height:1.6;}
+.db{padding:16px 18px;}
+.dn{font-size:16px;font-weight:700;color:var(--t);letter-spacing:-.3px;}
+.dss{font-size:10px;color:var(--t3);margin-top:2px;margin-bottom:13px;}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.di{background:var(--sf);border-radius:var(--r2);padding:9px 11px;border:1px solid var(--bd);}
+.dil{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:3px;}
+.dv{font-size:15px;font-weight:700;color:var(--t);}
+.dv.ac{color:var(--ac);}
+.sep{height:1px;background:var(--bd);margin:11px 0;}
+.drow{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--bd);}
+.drow:last-of-type{border:none;}
+.drl{font-size:11px;color:var(--t3);}.drv{font-size:11px;font-weight:600;color:var(--t);font-family:var(--mono);}
+.pp{margin-top:9px;}.ppl{display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-bottom:4px;}
+.ppb{height:5px;background:var(--sf2);border-radius:3px;overflow:hidden;}
+.ppf{height:100%;background:var(--ac);border-radius:3px;}
+.sbx{background:var(--grn-bg);border:1px solid var(--grn-bd);border-radius:var(--r2);padding:11px 13px;margin-top:10px;}
+.slx{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grn);margin-bottom:3px;}
+.svx{font-size:18px;font-weight:700;color:var(--grn);}
+.nob{background:var(--sf);border-radius:var(--r2);padding:11px 13px;margin-top:10px;font-size:11px;color:var(--t3);}
+.rks{padding:13px 18px;border-top:1px solid var(--bd);background:var(--sf);}
+.rkl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:7px;}
+.rkd{display:flex;gap:3px;margin-bottom:5px;}
+.rdd{height:6px;flex:1;border-radius:3px;background:var(--sf2);}
+.rdd.h{background:var(--red);}.rdd.m{background:var(--amb);}.rdd.l{background:var(--ac);}
+.rkr{font-size:11px;color:var(--t3);line-height:1.6;}
+.bal{background:var(--white);border:1px solid var(--amb-bd);border-radius:var(--r);box-shadow:var(--sh);padding:15px 17px;}
+.bll{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amb);margin-bottom:7px;}
+.blt{font-size:13px;font-weight:700;margin-bottom:4px;}
+.blb{font-size:11px;color:var(--t3);line-height:1.7;}
+.bpw{margin-top:9px;height:5px;background:var(--sf2);border-radius:3px;overflow:hidden;}
+.bpf{height:100%;background:var(--amb);border-radius:3px;}
+.bpl{display:flex;justify-content:space-between;margin-top:5px;font-size:9px;color:var(--t4);font-family:var(--mono);}
+.piei{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:6px;}
+.pied{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.pienm{color:var(--t2);flex:1;}.pievl{font-weight:700;color:var(--t);font-family:var(--mono);}.piept{font-size:10px;color:var(--t3);font-family:var(--mono);}
+.ek{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px;}
+.leg{display:flex;gap:14px;font-size:10px;color:var(--t3);}
+.li{display:flex;align-items:center;gap:4px;}.ld2{width:10px;height:4px;border-radius:2px;}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.fh{background:var(--ac);border-radius:var(--r);padding:18px 22px;color:#fff;}
+.fhl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.7;margin-bottom:7px;}
+.fhv{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1;}
+.fhs{font-size:11px;opacity:.75;margin-top:5px;}
+.fsc{background:var(--white);border:1px solid var(--bd);border-radius:var(--r);padding:15px 17px;box-shadow:var(--sh);}
+.fsl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:9px;}
+.fsi{display:flex;justify-content:space-between;align-items:center;padding:7px 9px;background:var(--sf);border-radius:var(--r2);margin-bottom:6px;font-size:12px;}
+canvas{display:block;}
+@keyframes si{from{opacity:0;transform:translateX(10px);}to{opacity:1;transform:translateX(0);}}.si{animation:si .2s ease;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="la">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAFlCAQAAAC35dLnAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+oFHQ4yJ1N8XmYAAAe3SURBVHja7d1fjF1FHQfw7y7bsvQPpaX8bW2RFgqWJpKWmEiM1qiJCYhE/iRUSfRNicEYE33BGDUSEl7URPvigyUWi0F5KDUE/FdUJEgCIkgLtPwRoS217ZaVbbvs+rCns+fevReri1xO+Xzuw86dM2d2z+7OOTNzfmduAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvtr709fpH4O3Kv0bTzc+KrMq5OT0DGcv+7MxjeSyvtJTpz9kZrNLDeTnjHWuamcXpT5L05ZXsS5LMyMxq61hGuuwH/F8tz9fyQPZnvOU1nD/nKzm9Vm4wm/Ji9bo9J3ap7Yo8W5V5Jh+u8j6frdVrfWb1+nDhnWduvphtbU188jWW+7KqlD0hd5QtD2Vex/pOyl2lzNackiQZyJ0l7+cZ6PUhwzvNotyWw12b+cTr91lSle7L90rutpzVscYPlJ7BkXyuypufh8t+3+71ITMd/b3+AfgfLMoP8+nMaMkbzettpS7NDTkhSTKe3SV3buZ0qHEg68qV/q+5u0qdnrOr1Hi29fqgmQ7dseaZk5tzeXk3nsdzbx7J/gzknHw0a2tj8KvygzyXJNlV8mbl5A51np/LSn0by2lhaeZXqeE80+vDhneSvtxQ67S/kpuyuLZ1Tm7MUNl6OJ+o8q/IkSpvJB/pUOc3yj7P5NyS/4WSu7MMA4C3wLJsL81vV66dMvgayPraOP1LVe6lebXKeT3XTKlzUR4ve9xSauzLd2vTc7N7feBMhzF6s/Tl2pxXpQ/nW7kjY20lRnNXDpV3c6uv+zJcpfqzcEqtl2dFldqVjaXGmTm/lHg6r/X60JkODb1Z5ufKkv5dNnQMYXk5/yrpI9XXAzlY8k5rK39K1lWTdsnmPF7LX1rS26acUGgUDb1ZVuXCKvV6fpKhjmUGa9NxRyfhhrO/5J3WFg+5NpdUqQO5LaMl/6ycUaVGs73XB870mHVvltVlrLwnD3YpszvfrK7QY7m/ynste8v2hemr9QQG85lyYvh1S53vLvPzQ9nZ6wNnejT0JunPRSX9Ql7qUmpHbpmSdyR7SnpBZmakvLukhLuO5Me1/OT88t+xq+v3oiF03ZvkpCwv6R159b/Yc6x2J31+rWtfD5T5U35T26O/TNAlz9U6/jSSK3qTnJp3lfS2Egk3kDO7/B2H8s+SnoyNm5dZOVClV5RAmdFsaBnz108qT+Vwrw+d6dHQm2RxuTU2VgtJXZ6flgi2Vrfm+yU9eUWfk7lVV7wvV2dRlftYtrTsWz+pPOkB1abT0Jvk3DIVN5wdJXd5Vnb5O9afSt+dI1V0/GQQ7KISPFMPfJ0weVI5lKd6feBMlzF6k6woN8b25MWSe17Xjns9Pn1vmWgbLNf/y8o4fEfubLtqLysnlX15vtcHznRp6M0xUJsee6GMvvuyskv53bWTQT02bkYWJJkIlDn69/9Z9fDLpMmTyj/arvU0kK57c8yuRao9W0JSB7IvW0t+f1aVWfTna1NxycEM5cyqzESn/ENZU217Obe3Rb7VTyo7alF1NJSG3hyzqytxkhwoDXM0N9X6ZadmS2noT7bcFR+uVoFLJoJgB3N9WUduc55o+15za8+wba9Fy9FQGnpznFi7/31SiW4bb2nOF5fHScfyYMuoe6Q2NbcwyZqsrd4dyIYpTbm+5MSTvT5wps8YvTkO1+5mv6fLOjHXlRn1F/NAy7Z6bNzCzMi6al245Fd5aEpNSyw5cXzR0JvjYO2afHE+3qHEJ3NdSd/TFp8+XruTPi8rS6DMa22BrxPOK72HPebcjwe67s3xav6S91XpWflORnJP7cnzBbkmXy9X6T350ZTu+GRDX5Iby7o0D+S3U75TXy4o6YNZ0uEJ9iQ5lKfLY7C8zWnozTGWLbm+XGmXZUPuy/35e0YzPxfkg1ldloscy/oO3fHdGa9umV1YHnZtD3ydMLMsbpFcmM1dfp5Hc6UYeHjznZy7pyzqPFpWg5t8barNz0/6WEamlHy45YMejjojT/yHpaTHM55ftK1DC7xJ1rzBhzYcbfgby4x5q9XZN+VjHr7cseR7s/cYGvrNvf5lwPHr/fnDGzS+Z/PVLp/EkizLS22ln845HUt+6hia+Xg+2+tfBcfOGL1p/pirc32uygVt67IOZXt+mU21Nd/a7c6tbdNqj3SZUT+hrEzT3aE82utfBcfOp6k208KszEVZmgWZkeHszc78Ldtry0VNz8xjGH2PZ8SCkfBWcaoGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoFH+DZr/LUEzsRjIAAAAAElFTkSuQmCC" alt="Givelo">
+    <div class="ldi"></div>
+    <div class="ls"><strong>Portafolio de Deuda</strong><br>Reporte ejecutivo - Comite directivo</div>
+  </div>
+  <div class="hr">
+    <div class="dc" id="fc">-</div>
+    <div class="sem"><div class="sem-dot"></div><div><div class="sem-l">Portafolio Estable</div><div class="sem-s">Sin vencimientos criticos inmediatos</div></div></div>
+    <div class="lc">Actualizado hoy</div>
+  </div>
+</header>
+<div class="kr">
+  <div class="kpi ac"><div class="kl">Deuda activa total</div><div class="kv">$1,302M</div><div class="ks">19 obligaciones vigentes</div><span class="kt" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);">Down $234M vs enero 2026</span></div>
+  <div class="kpi"><div class="kl">Reduccion 2026</div><div class="kv" style="color:var(--grn);">$234M</div><div class="ks">5 meses - $46.8M/mes promedio</div></div>
+  <div class="kpi"><div class="kl">Tasa promedio pond.</div><div class="kv">1.13%</div><div class="ks">efectivo mensual - 14.4% EA</div></div>
+  <div class="kpi"><div class="kl">Costo maximo activo</div><div class="kv w">1.50%</div><div class="ks">Sempli - $66.4M - 19.6% EA</div></div>
+  <div class="kpi"><div class="kl">Alerta mas proxima</div><div class="kv d">dic-2026</div><div class="ks">Nora 3.0 bullet - $39.2M</div><span class="kt ta">7 meses</span></div>
+</div>
+<div class="pg">
+  <div class="pc" style="border-color:var(--red-bd);background:var(--red-bg);"><div class="pnx">Vence en 4 semanas</div><div class="pnm">Mauricio Delgado 2.3</div><div class="pdt">Junio 2026 - 2 cuotas finales - 1.40% MV</div><div class="pmt" style="color:var(--red);">$6.3M</div></div>
+  <div class="pc" style="border-color:var(--amb-bd);"><div class="pnx">Dic-2026 - Bullet</div><div class="pnm">Nora Gonzalez 3.0</div><div class="pdt">Pago unico capitalizado - FIC activa - 1.20% MV</div><div class="pmt" style="color:var(--amb);">~$39.2M</div></div>
+  <div class="pc" style="border-color:var(--amb-bd);"><div class="pnx">Ene-2027</div><div class="pnm">Bancolombia 60118715</div><div class="pdt">Ultima cuota - se cancela solo - 1.04% MV</div><div class="pmt" style="color:var(--amb);">~$2M</div></div>
+</div>
+<div class="tabs">
+  <button class="tb on" onclick="sw('portafolio',this)">Portafolio</button>
+  <button class="tb" onclick="sw('concentracion',this)">Concentracion</button>
+  <button class="tb" onclick="sw('evolucion',this)">Evolucion 2026</button>
+  <button class="tb" onclick="sw('libertad',this)">Libertad de deuda</button>
+</div>
+<div id="tp-portafolio" class="tp on">
+  <div class="mg">
+    <div class="card">
+      <div class="ch"><span class="ct">Obligaciones activas - 29 Mayo 2026</span><span class="ci">Clic en fila para ver detalle</span></div>
+      <div style="overflow-x:auto;"><table><thead><tr><th>#</th><th style="min-width:170px;">Acreedor</th><th>Tipo</th><th class="r">Saldo</th><th class="r">Tasa MV</th><th class="r">Cuota/mes</th><th class="r">Vence</th></tr></thead><tbody id="tb"></tbody></table></div>
+    </div>
+    <div class="dp">
+      <div class="card"><div class="de" id="de"><div class="dei">up-left</div><div class="det">Selecciona una obligacion<br>para ver sus caracteristicas</div></div><div id="dd" style="display:none;"></div></div>
+      <div class="bal"><div class="bll">Alerta - Vencimiento bullet</div><div class="blt">Nora Gonzalez 3.0</div><div class="blb">Pago unico en diciembre 2026.<br>Saldo capitalizado aprox $39.2M.<br>Reserva activa en FIC Bancolombia.<br>Faltan <strong style="color:var(--amb);">7 meses.</strong></div><div class="bpw"><div class="bpf" style="width:41%;"></div></div><div class="bpl"><span>dic-2025</span><span>41%</span><span>dic-2026</span></div></div>
+    </div>
+  </div>
+</div>
+<div id="tp-concentracion" class="tp">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+    <div class="card"><div class="ch"><span class="ct">Por tipo de acreedor</span></div><div style="padding:20px;display:flex;align-items:center;gap:24px;"><canvas id="pie1" width="180" height="180"></canvas><div id="leg1"></div></div></div>
+    <div class="card"><div class="ch"><span class="ct">Por entidad</span></div><div style="padding:20px;display:flex;align-items:center;gap:24px;"><canvas id="pie2" width="180" height="180"></canvas><div id="leg2"></div></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+    <div class="card" style="border-color:var(--amb-bd);"><div style="padding:16px 18px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amb);margin-bottom:8px;">Concentracion bancaria</div><div style="font-size:13px;font-weight:700;margin-bottom:6px;">Bancolombia - 38%</div><div style="font-size:11px;color:var(--t3);line-height:1.6;">$490M en una sola entidad. Incluye credito consolidado, GFME y lineas rotativas. Alta dependencia de una sola relacion bancaria.</div></div></div>
+    <div class="card" style="border-color:var(--grn-bd);"><div style="padding:16px 18px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--grn);margin-bottom:8px;">Diversificacion P.N.</div><div style="font-size:13px;font-weight:700;margin-bottom:6px;">Personas naturales - 35%</div><div style="font-size:11px;color:var(--t3);line-height:1.6;">$461M distribuidos en 8 acreedores distintos. Sin penalidades por prepago. Maxima flexibilidad para renegociar o prepagar.</div></div></div>
+    <div class="card" style="border-color:var(--red-bd);"><div style="padding:16px 18px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Deuda cara - prioridad</div><div style="font-size:13px;font-weight:700;margin-bottom:6px;">Tasas mas del 1.35% MV = $160M</div><div style="font-size:11px;color:var(--t3);line-height:1.6;">Sempli (1.50%), Banc.909 (1.43%) y Paola R.1 (1.39%) son el 12% del portafolio pero generan el 24% del costo financiero mensual.</div></div></div>
+  </div>
+</div>
+<div id="tp-evolucion" class="tp">
+  <div class="ek">
+    <div class="kpi ac" style="cursor:default;"><div class="kl">Saldo ene-2026 (EEFF)</div><div class="kv" style="font-size:20px;color:#fff;">$1,536M</div></div>
+    <div class="kpi" style="cursor:default;"><div class="kl">Saldo hoy (may-2026)</div><div class="kv" style="font-size:20px;color:var(--grn);">$1,302M</div><div class="ks">Down $234M en 5 meses</div></div>
+    <div class="kpi" style="cursor:default;"><div class="kl">Proy. cierre dic-2026</div><div class="kv" style="font-size:20px;">~$1,040M</div></div>
+    <div class="kpi" style="cursor:default;"><div class="kl">Vs presupuesto (may)</div><div class="kv" style="font-size:20px;color:var(--grn);">+$167M</div><div class="ks">Por debajo del presupuesto</div></div>
+    <div class="kpi" style="cursor:default;"><div class="kl">Ritmo mensual promedio</div><div class="kv" style="font-size:20px;">~$47M</div><div class="ks">Real ene-may 2026</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:14px;">
+    <div class="card"><div class="ch"><span class="ct">Evolucion de la deuda 2026</span><div class="leg"><div class="li"><div class="ld2" style="background:#1A56DB;"></div>Presupuestada</div><div class="li"><div class="ld2" style="background:#059669;"></div>Real</div><div class="li"><div class="ld2" style="background:#059669;opacity:.5;"></div>Proyeccion</div></div></div><div style="padding:14px 18px;"><canvas id="ec" height="230"></canvas></div></div>
+    <div class="card"><div class="ch"><span class="ct">Detalle mensual</span></div><table><thead><tr><th>Mes</th><th class="r">Ppto.</th><th class="r">Real</th><th class="r">Delta</th></tr></thead><tbody id="etb"></tbody></table></div>
+  </div>
+</div>
+<div id="tp-libertad" class="tp">
+  <div class="fg">
+    <div class="fh"><div class="fhl">Proyeccion - Sin nuevas obligaciones</div><div class="fhv">Dic 2030</div><div class="fhs">Fecha estimada deuda $0 siguiendo el plan actual.<br>Faltan aprox. <strong>55 meses</strong> (4 anos 7 meses).</div></div>
+    <div class="fsc"><div class="fsl">Escenarios segun excedentes de liquidez</div><div class="fsi"><span style="font-weight:500;">Sin prepagos (plan normal)</span><span style="font-weight:700;color:var(--t3);">dic-2030</span></div><div class="fsi"><span style="font-weight:500;">+$20M extra/mes en deudas caras</span><span style="font-weight:700;color:var(--grn);">jun-2029</span></div><div class="fsi"><span style="font-weight:500;">+$50M extra/mes en top 3</span><span style="font-weight:700;color:var(--grn);">oct-2028</span></div><div class="fsi"><span style="font-weight:500;">+$100M extra/mes top 3</span><span style="font-weight:700;color:var(--grn);">mar-2028</span></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:14px;">
+    <div class="card"><div class="ch"><span class="ct">Proyeccion de cancelacion - plan normal</span></div><table><thead><tr><th>Acreedor</th><th class="r">Saldo hoy</th><th class="r">Vence</th><th class="r">Int. restante est.</th></tr></thead><tbody id="ptb"></tbody></table></div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card"><div class="ch"><span class="ct">Liberaciones proximos 12 meses</span></div><div style="padding:13px 16px;display:flex;flex-direction:column;gap:7px;" id="np"></div></div>
+      <div style="background:var(--ac-bg);border:1px solid var(--ac-bd);border-radius:var(--r);padding:15px 17px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ac);margin-bottom:7px;">Interes total restante estimado</div><div style="font-size:26px;font-weight:800;color:var(--ac);letter-spacing:-.5px;">~$265M</div><div style="font-size:11px;color:var(--t3);margin-top:4px;line-height:1.6;">Lo que Givelo pagaria en intereses siguiendo el plan actual sin prepagos adicionales.</div></div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+var DEBTS=[
+  {id:"banc279",name:"Bancolombia Consolidado",sub:"60118279 - 4 creditos unificados",tipo:"P.J",rot:false,saldo:415421523,tasa:1.12,cuota:20923837,qr:29,plazo:36,inicio:"dic-2025",vence:"dic-2028",urg:"ok",grp:"Bancolombia",rank:8,im:4641,rz:"Tasa media del portafolio. Mayor saldo ($415M). Prepagar despues de los creditos mas costosos.",ah:130},
+  {id:"gfme",name:"Bancolombia GFME x3",sub:"3 Giros activos - rotativos",tipo:"P.J",rot:true,saldo:132838945,tasa:0.81,cuota:1127670,qr:0,plazo:12,inicio:"varios",vence:"rotativos",urg:"ok",grp:"Bancolombia",rank:10,im:1075,rz:"NO PREPAGAR. Tasa mas baja. Rotativos que financian mercancia importada.",ah:0},
+  {id:"banc909",name:"Bancolombia 60118909",sub:"Inicio feb-2026 - 36 meses",tipo:"P.J",rot:true,saldo:57894357,tasa:1.43,cuota:2729889,qr:33,plazo:36,inicio:"feb-2026",vence:"feb-2029",urg:"ok",grp:"Bancolombia",rank:2,im:828,rz:"Segunda tasa mas alta (1.43% MV = 18.6% EA). Alta prioridad de prepago.",ah:27},
+  {id:"banc715",name:"Bancolombia 60118715",sub:"Inicio ene-2026 - 12 meses",tipo:"P.J",rot:true,saldo:16581279,tasa:1.04,cuota:2355833,qr:8,plazo:12,inicio:"ene-2026",vence:"ene-2027",urg:"soon",grp:"Bancolombia",rank:9,im:172,rz:"Tasa baja (1.04% MV). 8 cuotas - termina solo.",ah:1.4},
+  {id:"bdb754",name:"Banco de Bogota 754421281",sub:"Inicio jun-2022 - 60 meses",tipo:"P.J",rot:false,saldo:46690259,tasa:1.20,cuota:5841715,qr:13,plazo:60,inicio:"jun-2022",vence:"jun-2027",urg:"soon",grp:"Banco de Bogota",rank:7,im:560,rz:"Casi finalizado (13 cuotas). Se amortiza rapido.",ah:7},
+  {id:"bdb105",name:"Banco de Bogota 1053525184",sub:"Inicio nov-2024 - 36 meses",tipo:"P.J",rot:false,saldo:33232147,tasa:1.17,cuota:2057943,qr:18,plazo:36,inicio:"nov-2024",vence:"nov-2027",urg:"ok",grp:"Banco de Bogota",rank:8,im:389,rz:"Tasa media. 18 cuotas restantes.",ah:7},
+  {id:"bdb115",name:"Banco de Bogota 1155871819",sub:"Inicio feb-2026 - 12 meses",tipo:"P.J",rot:false,saldo:22517947,tasa:1.21,cuota:2870355,qr:9,plazo:12,inicio:"feb-2026",vence:"feb-2027",urg:"soon",grp:"Banco de Bogota",rank:8,im:272,rz:"Plazo corto. Termina en menos de 1 ano.",ah:2},
+  {id:"sempli",name:"Sempli 11522",sub:"Inicio jul-2025 - 36 meses",tipo:"P.J",rot:true,saldo:66426522,tasa:1.50,cuota:7355000,qr:21,plazo:36,inicio:"jul-2025",vence:"feb-2027",urg:"ok",grp:"Sempli / Shopify",rank:1,im:997,rz:"PRIMERA PRIORIDAD. Tasa mas alta (1.50% MV). Bajo de $116M a $66M con abono Nataly.",ah:14.9},
+  {id:"shopify",name:"Shopify 5.0",sub:"Dic-2025 - factor fijo 10%",tipo:"P.J",rot:true,saldo:27012852,tasa:0,cuota:0,qr:0,plazo:0,inicio:"dic-2025",vence:"variable",urg:"ok",grp:"Sempli / Shopify",rank:6,im:270,rz:"Factor fijo 10% sobre el monto. Se descuenta de ventas.",ah:0},
+  {id:"paola2",name:"Paola Rendon 2.0",sub:"Inicio may-2026 - 36 meses",tipo:"P.N",rot:false,saldo:95000000,tasa:1.20,cuota:3265362,qr:36,plazo:36,inicio:"may-2026",vence:"may-2029",urg:"ok",grp:"Personas Naturales",rank:6,im:1140,rz:"$95M a 1.20% MV, 36 cuotas. Prioridad media.",ah:41},
+  {id:"nora1",name:"Nora Gonzalez 1.0",sub:"Inicio feb-2024 - 42 meses",tipo:"P.N",rot:false,saldo:93066074,tasa:1.25,cuota:6843031,qr:24,plazo:42,inicio:"feb-2024",vence:"feb-2027",urg:"ok",grp:"Personas Naturales",rank:4,im:1163,rz:"Mayor saldo P.N. ($93.1M). Candidata a prepago parcial con excedentes grandes.",ah:28},
+  {id:"nora3",name:"Nora Gonzalez 3.0",sub:"Bullet - dic-2025 - 12 meses",tipo:"P.N",rot:false,saldo:34000000,tasa:1.20,cuota:0,qr:7,plazo:12,inicio:"dic-2025",vence:"dic-2026",urg:"urgent",grp:"Personas Naturales",rank:0,im:408,rz:"BULLET - fondos reservados en FIC Bancolombia. Pago unico dic-2026.",ah:0},
+  {id:"nataly",name:"Nataly Uribe 1.0",sub:"Inicio may-2026 - 24 meses",tipo:"P.N",rot:false,saldo:50000000,tasa:1.15,cuota:2395923,qr:24,plazo:24,inicio:"may-2026",vence:"may-2028",urg:"ok",grp:"Personas Naturales",rank:7,im:575,rz:"1.15% MV. Sirvio para prepagar Sempli el 13/05. Prioridad media-baja.",ah:13},
+  {id:"melissa",name:"Melissa Velez 2.5",sub:"Inicio nov-2025 - 36 meses",tipo:"P.N",rot:false,saldo:45114465,tasa:1.20,cuota:1799617,qr:31,plazo:36,inicio:"nov-2025",vence:"nov-2028",urg:"ok",grp:"Personas Naturales",rank:6,im:541,rz:"1.20% MV, 31 cuotas.",ah:17},
+  {id:"paola1",name:"Paola Rendon 1.0",sub:"Inicio nov-2025 - 48 meses",tipo:"P.N",rot:false,saldo:35682128,tasa:1.39,cuota:1147590,qr:42,plazo:48,inicio:"nov-2025",vence:"nov-2029",urg:"ok",grp:"Personas Naturales",rank:3,im:496,rz:"Tercera tasa mas alta (1.39% MV). 42 cuotas. Alta prioridad.",ah:21},
+  {id:"abarrotes",name:"Abarrotes el 27 SAS",sub:"Inicio jul-2025 - 30 meses",tipo:"P.J",rot:false,saldo:70554686,tasa:1.20,cuota:3989003,qr:20,plazo:30,inicio:"jul-2025",vence:"ene-2028",urg:"ok",grp:"Personas Naturales",rank:6,im:847,rz:"1.20% MV, $70.5M saldo, 20 cuotas.",ah:17},
+  {id:"maur24",name:"Mauricio Delgado 2.4",sub:"Inicio mar-2025 - 26 meses",tipo:"P.N",rot:false,saldo:33435141,tasa:1.25,cuota:3017799,qr:12,plazo:26,inicio:"mar-2025",vence:"may-2027",urg:"soon",grp:"Personas Naturales",rank:5,im:418,rz:"1.25% MV, 12 cuotas. Prioridad 5.",ah:5},
+  {id:"maur23",name:"Mauricio Delgado 2.3",sub:"Inicio feb-2024 - 28 meses",tipo:"P.N",rot:false,saldo:6326438,tasa:1.40,cuota:6415008,qr:2,plazo:28,inicio:"feb-2024",vence:"jun-2026",urg:"urgent",grp:"Personas Naturales",rank:0,im:89,rz:"Termina en 2 cuotas. Se cancela solo en junio.",ah:0},
+  {id:"simon",name:"Simon Gil 1.0",sub:"Desde feb-2019 - solo intereses",tipo:"P.N",rot:false,saldo:20000000,tasa:0.72,cuota:144000,qr:-1,plazo:0,inicio:"feb-2019",vence:"indefinido",urg:"ok",grp:"Personas Naturales",rank:10,im:144,rz:"NO PREPAGAR. Tasa mas baja (0.72% MV). Amortizar aqui mientras hay deuda al 1.50% es suboptimo.",ah:0}
+];
+
+var EVO=[
+  {m:"Ene",p:1550,r:1536,pr:false},{m:"Feb",p:1619.5,r:1602,pr:false},
+  {m:"Mar",p:1569.9,r:1548.8,pr:false},{m:"Abr",p:1519.6,r:1431.1,pr:false},
+  {m:"May",p:1468.8,r:1301.8,pr:false},{m:"Jun",p:1417.3,r:null,pr:true},
+  {m:"Jul",p:1365.0,r:null,pr:true},{m:"Ago",p:1312.2,r:null,pr:true},
+  {m:"Sep",p:1258.6,r:null,pr:true},{m:"Oct",p:1204.3,r:null,pr:true},
+  {m:"Nov",p:1149.5,r:null,pr:true},{m:"Dic",p:1040.0,r:null,pr:true}
+];
+
+var RLABELS=["N/A","Primera","Segunda","Tercera","Cuarta","Quinta","Sexta","Septima","Octava","Novena","No prepagar"];
+
+function fM(n){if(n===0)return"$0";return"$"+Math.round(n/1e6*10)/10+"M";}
+function rc(t){if(t>=1.35)return"var(--red)";if(t>=1.15)return"var(--amb)";if(t>=0.90)return"var(--ac)";return"#0D9488";}
+
+function buildTable(){
+  var tbody=document.getElementById("tb");
+  tbody.innerHTML="";
+  var lg="";
+  for(var i=0;i<DEBTS.length;i++){
+    var d=DEBTS[i];
+    if(d.grp!==lg){
+      var gr=document.createElement("tr");gr.className="gh";
+      gr.innerHTML="<td colspan='7'><span class='gl'>"+d.grp+"</span></td>";
+      tbody.appendChild(gr);lg=d.grp;
+    }
+    var tr=document.createElement("tr");tr.className="dr";tr.dataset.id=d.id;
+    var rk=d.rank===1?"<span class='rk r1'>1</span>":d.rank===0?"<span class='rk rn'>-</span>":d.rank===10?"<span class='rk rn'>ok</span>":"<span class='rk rn'>"+d.rank+"</span>";
+    var tc=rc(d.tasa);
+    var fp=d.tasa>0?Math.round((d.tasa/1.5)*100):0;
+    var vt=d.urg==="urgent"?"<span class='vt vu'>"+d.vence+"</span>":d.urg==="soon"?"<span class='vt vs'>"+d.vence+"</span>":"<span class='vt vo'>"+d.vence+"</span>";
+    var rb=d.rot?"<span class='ba ro'>ROT</span>":"";
+    tr.innerHTML="<td>"+rk+"</td>"
+      +"<td><div class='an'>"+d.name+"</div><div class='as'>"+d.sub+"</div></td>"
+      +"<td><span class='ba "+(d.tipo==="P.J"?"pj":"pn")+"'>"+d.tipo+"</span>"+rb+"</td>"
+      +"<td class='r' style='font-weight:600;'>"+fM(d.saldo)+"</td>"
+      +"<td class='r'><div class='rcc'><div class='rb'><div class='rf' style='width:"+fp+"%;background:"+tc+";'></div></div>"
+      +"<span style='color:"+tc+";font-weight:600;'>"+(d.tasa>0?d.tasa.toFixed(2)+"%":"factor")+"</span></div></td>"
+      +"<td class='r'>"+(d.cuota>0?fM(d.cuota):"var.")+"</td>"
+      +"<td class='r'>"+vt+"</td>";
+    (function(debt){tr.addEventListener("click",function(){sel(debt.id);});})(d);
+    tbody.appendChild(tr);
+  }
+  var tot=document.createElement("tr");tot.className="ttr";
+  tot.innerHTML="<td colspan='2' style='font-weight:700;font-family:var(--font);'>TOTAL PORTAFOLIO</td><td></td>"
+    +"<td class='r' style='color:var(--ac);font-size:13px;'>$1,302M</td>"
+    +"<td class='r' style='color:var(--t3);'>1.13% pond.</td>"
+    +"<td class='r'>19 oblig.</td><td></td>";
+  tbody.appendChild(tot);
+}
+
+function sel(id){
+  var rows=document.querySelectorAll(".dr");
+  for(var i=0;i<rows.length;i++)rows[i].classList.remove("sel");
+  var row=document.querySelector("[data-id='"+id+"']");
+  if(row)row.classList.add("sel");
+  var d=null;
+  for(var i=0;i<DEBTS.length;i++){if(DEBTS[i].id===id){d=DEBTS[i];break;}}
+  if(!d)return;
+  document.getElementById("de").style.display="none";
+  var dd=document.getElementById("dd");dd.style.display="block";
+  dd.classList.remove("si");void dd.offsetWidth;dd.classList.add("si");
+  var tc=rc(d.tasa);
+  var pp=d.plazo>0&&d.qr>=0?Math.round(((d.plazo-d.qr)/d.plazo)*100):0;
+  var ea=d.tasa>0?((Math.pow(1+d.tasa/100,12)-1)*100).toFixed(1)+"% EA":"--";
+  var rk=d.rank===0?"No aplica":d.rank===10?"No prepagar":RLABELS[d.rank]+" prioridad";
+  var extra=d.ah>0?"<div class='sbx'><div class='slx'>Interes total evitable</div><div class='svx'>~$"+d.ah+"M</div><div style='font-size:10px;color:var(--t3);margin-top:2px;'>si se cancela el saldo completo hoy</div></div>":"<div class='nob'>No candidato a prepago anticipado.</div>";
+  var dots="";
+  for(var i=0;i<9;i++){var p=9-i;var cl="";if(d.rank>0&&d.rank<=9&&p>=d.rank)cl=d.rank<=3?"h":d.rank<=5?"m":"l";dots+="<div class='rdd "+cl+"'></div>";}
+  var progBar=d.qr>0&&d.plazo>0?"<div class='pp'><div class='ppl'><span>Progreso del credito</span><span>"+pp+"% pagado</span></div><div class='ppb'><div class='ppf' style='width:"+pp+"%;'></div></div></div>":"";
+  dd.innerHTML="<div class='db'>"
+    +"<div class='dn'>"+d.name+"</div>"
+    +"<div class='dss'>"+d.sub+" - "+d.grp+"</div>"
+    +"<div class='dg'>"
+    +"<div class='di'><div class='dil'>Saldo actual</div><div class='dv ac'>"+fM(d.saldo)+"</div></div>"
+    +"<div class='di'><div class='dil'>Tasa MV</div><div class='dv' style='color:"+tc+";'>"+(d.tasa>0?d.tasa.toFixed(2)+"%":"factor 10%")+"</div></div>"
+    +"<div class='di'><div class='dil'>EA equivalente</div><div class='dv' style='color:"+tc+";'>"+ea+"</div></div>"
+    +"<div class='di'><div class='dil'>Cuota mensual</div><div class='dv'>"+(d.cuota>0?fM(d.cuota):"variable")+"</div></div>"
+    +"<div class='di'><div class='dil'>Interes/mes</div><div class='dv' style='color:"+tc+";'>"+(d.im>0?"~$"+d.im+"K":"--")+"</div></div>"
+    +"<div class='di'><div class='dil'>Vencimiento</div><div class='dv'>"+d.vence+"</div></div>"
+    +"</div>"
+    +"<div class='sep'></div>"
+    +"<div class='drow'><span class='drl'>Tipo acreedor</span><span class='drv'>"+(d.tipo==="P.J"?"P. Juridica":"P. Natural")+"</span></div>"
+    +"<div class='drow'><span class='drl'>Penalidad prepago</span><span class='drv' style='color:var(--grn);'>Ninguna</span></div>"
+    +"<div class='drow'><span class='drl'>Rotativo</span><span class='drv'>"+(d.rot?"Si":"No")+"</span></div>"
+    +progBar+"<div class='sep'></div>"+extra+"</div>"
+    +"<div class='rks'><div class='rkl'>Prioridad de prepago: "+rk+"</div><div class='rkd'>"+dots+"</div><div class='rkr'>"+d.rz+"</div></div>";
+}
+
+var pieBuilt=false;
+function buildConcentracion(){
+  if(pieBuilt)return;pieBuilt=true;
+  var tipos={"Bancolombia":0,"Banco de Bogota":0,"Sempli / Shopify":0,"Personas Naturales":0};
+  var grupMap={"Banco de Bogotá":"Banco de Bogota","Banco de Bogota":"Banco de Bogota"};
+  for(var i=0;i<DEBTS.length;i++){var d=DEBTS[i];var g=grupMap[d.grp]||d.grp;if(tipos[g]!==undefined)tipos[g]+=d.saldo;}
+  var total=0;var keys=Object.keys(tipos);for(var i=0;i<keys.length;i++)total+=tipos[keys[i]];
+  var cols=["#1A56DB","#0D9488","#DC2626","#D97706"];
+  new Chart(document.getElementById("pie1"),{type:"doughnut",data:{labels:keys,datasets:[{data:keys.map(function(k){return tipos[k];}),backgroundColor:cols,borderWidth:2,borderColor:"#fff"}]},options:{responsive:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return "$"+Math.round(ctx.raw/1e6)+"M - "+Math.round(ctx.raw/total*100)+"%";}}}}}});
+  var leg1=document.getElementById("leg1");
+  for(var i=0;i<keys.length;i++){var pct=Math.round(tipos[keys[i]]/total*100);var item=document.createElement("div");item.className="piei";item.innerHTML="<div class='pied' style='background:"+cols[i]+";'></div><span class='pienm'>"+keys[i]+"</span><span class='pievl'>"+Math.round(tipos[keys[i]]/1e6)+"M</span><span class='piept'> "+pct+"%</span>";leg1.appendChild(item);}
+  var ents={"Bancolombia":490336104,"Banco de Bogota":102440353,"Sempli":66426522,"Shopify":27012852,"P. Naturales":461278791};
+  var tot2=0;var keys2=Object.keys(ents);for(var i=0;i<keys2.length;i++)tot2+=ents[keys2[i]];
+  var cols2=["#1A56DB","#0D9488","#DC2626","#6B7280","#D97706"];
+  new Chart(document.getElementById("pie2"),{type:"doughnut",data:{labels:keys2,datasets:[{data:keys2.map(function(k){return ents[k];}),backgroundColor:cols2,borderWidth:2,borderColor:"#fff"}]},options:{responsive:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return "$"+Math.round(ctx.raw/1e6)+"M - "+Math.round(ctx.raw/tot2*100)+"%";}}}}}});
+  var leg2=document.getElementById("leg2");
+  for(var i=0;i<keys2.length;i++){var pct2=Math.round(ents[keys2[i]]/tot2*100);var item2=document.createElement("div");item2.className="piei";item2.innerHTML="<div class='pied' style='background:"+cols2[i]+";'></div><span class='pienm'>"+keys2[i]+"</span><span class='pievl'>"+Math.round(ents[keys2[i]]/1e6)+"M</span><span class='piept'> "+pct2+"%</span>";leg2.appendChild(item2);}
+}
+
+function buildEvoTable(){
+  var tbody=document.getElementById("etb");
+  var mn=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+  for(var i=0;i<EVO.length;i++){
+    var e=EVO[i];var tr=document.createElement("tr");
+    var delta=e.r!=null?(e.r-e.p):null;
+    var rc2=e.r!=null?"<span style='font-weight:600;color:var(--grn);'>"+e.r+"M</span>":"<span style='color:var(--t4);font-size:10px;'>proy.</span>";
+    var dc=delta!=null?"<span style='font-size:11px;font-weight:600;color:"+(delta>0?"var(--red)":"var(--grn)");dc+="'>"+(delta>0?"+":"")+Math.round(delta*10)/10+"M</span>";
+    tr.style.cssText="height:38px;";
+    tr.innerHTML="<td style='font-weight:600;font-size:12px;'>"+mn[i]+"</td><td class='r' style='font-size:12px;color:var(--t3);'>"+e.p+"M</td><td class='r'>"+rc2+"</td><td class='r'>"+dc+"</td>";
+    if(i>=5)tr.style.opacity="0.6";
+    tbody.appendChild(tr);
+  }
+}
+
+function buildEvoChart(){
+  var ctx=document.getElementById("ec").getContext("2d");
+  new Chart(ctx,{type:"line",data:{labels:EVO.map(function(e){return e.m;}),datasets:[
+    {label:"Presupuestada",data:EVO.map(function(e){return e.p*1e6;}),borderColor:"#1A56DB",backgroundColor:"rgba(26,86,219,0.06)",borderWidth:2,pointRadius:4,tension:.3,fill:true},
+    {label:"Real",data:EVO.map(function(e){return e.r!=null&&!e.pr?e.r*1e6:null;}),borderColor:"#059669",borderWidth:2.5,pointRadius:5,tension:.3},
+    {label:"Proyeccion",data:EVO.map(function(e,i){return i===4?e.r*1e6:e.pr?e.p*1e6:null;}),borderColor:"#059669",borderDash:[6,4],borderWidth:1.5,pointRadius:3,tension:.3}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+": $"+Math.round(ctx.parsed.y/1e6)+"M";}}}},scales:{x:{grid:{color:"rgba(0,0,0,0.04)"},ticks:{font:{size:11}}},y:{grid:{color:"rgba(0,0,0,0.04)"},ticks:{callback:function(v){return "$"+Math.round(v/1e6)+"M";},font:{size:11}},min:900e6,max:1700e6}}}});
+}
+
+function buildPayoff(){
+  var tbody=document.getElementById("ptb");
+  var sorted=[];
+  for(var i=0;i<DEBTS.length;i++){var d=DEBTS[i];if(d.qr>0&&["rotativos","variable","indefinido"].indexOf(d.vence)===-1)sorted.push(d);}
+  sorted.sort(function(a,b){return a.qr-b.qr;});
+  for(var i=0;i<sorted.length;i++){
+    var d=sorted[i];var tr=document.createElement("tr");
+    var it=Math.round(d.im*d.qr/1000);
+    var vc=d.urg==="urgent"?"vu":d.urg==="soon"?"vs":"vo";
+    tr.innerHTML="<td><div class='an' style='font-size:12px;'>"+d.name+"</div></td><td class='r'>"+fM(d.saldo)+"</td><td class='r'><span class='vt "+vc+"'>"+d.vence+"</span></td><td class='r' style='color:var(--red);'>~$"+it+"K</td>";
+    tbody.appendChild(tr);
+  }
+}
+
+function buildNP(){
+  var el=document.getElementById("np");
+  var items=[
+    {n:"Mauricio Delgado 2.3",v:"jun-2026",s:"$6.3M",c:"var(--red)"},
+    {n:"Nora Gonzalez 3.0",v:"dic-2026",s:"$39.2M",c:"var(--amb)",x:"bullet"},
+    {n:"Bancolombia 60118715",v:"ene-2027",s:"~$2M",c:"var(--t3)"},
+    {n:"BdB 1155871819",v:"feb-2027",s:"~$5M",c:"var(--t3)"},
+    {n:"Mauricio Delgado 2.4",v:"may-2027",s:"~$3M",c:"var(--amb)"}
+  ];
+  for(var i=0;i<items.length;i++){
+    var n=items[i];var dv=document.createElement("div");
+    dv.style.cssText="display:flex;justify-content:space-between;align-items:center;padding:7px 9px;background:var(--sf);border-radius:5px;";
+    dv.innerHTML="<div><div style='font-size:12px;font-weight:500;'>"+n.n+"</div><div style='font-size:10px;color:var(--t3);'>"+n.v+(n.x?" - "+n.x:"")+"</div></div><div style='font-size:12px;font-weight:700;color:"+n.c+";'>"+n.s+"</div>";
+    el.appendChild(dv);
+  }
+}
+
+function sw(name,btn){
+  var panels=document.querySelectorAll(".tp");for(var i=0;i<panels.length;i++)panels[i].classList.remove("on");
+  var btns=document.querySelectorAll(".tb");for(var i=0;i<btns.length;i++)btns[i].classList.remove("on");
+  document.getElementById("tp-"+name).classList.add("on");btn.classList.add("on");
+  if(name==="concentracion")setTimeout(buildConcentracion,50);
+}
+
+function init(){
+  var fc=document.getElementById("fc");
+  if(fc)fc.textContent=new Date().toLocaleDateString("es-CO",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+  buildTable();
+  buildEvoTable();
+  buildPayoff();
+  buildNP();
+  buildEvoChart();
+}
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
